@@ -65,3 +65,40 @@ JIKA FILE TIDAK TERDETEKSI / TIDAK JALAN
 - Folder harus berada di tempat yang sama dengan index.html: <folder web>/assets/photos, assets/video, assets/music.
   Jika memakai folder uji-lokal, taruh juga di uji-lokal/assets (bukan hanya di folder ulangtahun).
 - Setelah menimpa file: Ctrl+F5. Penanda versi: admin "build 2026.10.18-bersih2", index di F12 Console "index build 2026.10.18-bersih2".
+
+DUA CARA MEMASUKKAN MEDIA (BEBAS DIPILIH, build 2026.10.18-lengkap)
+A. MANUAL: file di folder assets (foto1.jpg, video1.mp4, lagu1.mp3) lalu pilih nomornya di admin > Media.
+B. UNGGAH KE GOOGLE DRIVE dari admin > Media (foto otomatis diperkecil). URL Drive terisi otomatis.
+   - Jika kolom URL Drive terisi, URL itu dipakai menggantikan file lokal. Klik "✖ Hapus URL" untuk kembali ke file lokal.
+   - Foto/musik/video Drive dimuat lewat Apps Script (per potongan) agar tidak diblokir Google. Batas 18 MB; video/musik disarankan <= 8 MB.
+   - Video: pastikan Latar = Video. Format paling aman MP4 (H.264 + AAC); admin memberi peringatan bila browser tidak bisa memutarnya.
+   - WAJIB: salin Code.gs terbaru ke Apps Script lalu Deploy -> Manage deployments -> Edit -> Version: New version -> Deploy.
+     Klik "🩺 Tes koneksi & versi Code.gs" di admin: harus tertulis versi 2026.10.18-lengkap.
+
+UCAPAN TEMAN: SEKALI PER LAGU (build 2026.10.18-siklus)
+- Setiap lagu mulai dari awal (lagu pertama, lagu berikutnya, atau lagu yang berulang) memulai satu putaran: tiap ucapan teman tampil SEKALI.
+- Jika temannya banyak dan lagu sudah selesai/berulang sebelum semuanya tampil, sisa ucapan teman dihabiskan dulu sampai tuntas.
+  Setelah itu hanya ucapan utama yang tampil, sampai lagu mulai dari awal lagi, baru ucapan teman muncul lagi.
+- Ucapan teman yang masuk di tengah putaran tampil pada putaran berikutnya.
+- Tanpa musik (atau musik gagal diputar), ucapan teman berputar terus seperti biasa.
+
+UCAPAN TEMAN DI TEKS BERJALAN (build 2026.10.18-siklus2)
+- Ucapan teman di teks berjalan (bagian bawah layar) juga mengikuti lagu: muncul SEKALI (satu kali gulir) setiap lagu mulai dari awal,
+  lalu hilang sampai lagu mulai dari awal lagi. Teks berjalan utama tetap tampil terus.
+- Ingin menonaktifkan salah satunya? Admin > Teman: "Tampil sebagai slide" dan "Tampil di teks berjalan".
+- Cek di halaman utama: F12 > Console menampilkan "[teman] lagu mulai dari awal -> putaran N" dan "[teman] putaran slide dimulai/selesai".
+
+SLIDE UCAPAN TEMAN (build 2026.10.18-teman4)
+- Tampil SEKALI per putaran lagu. Lama tampil mengikuti panjang kalimat (sekitar 5-24 detik); pesan ditampilkan utuh sampai 500 karakter.
+- Jika ada rekaman suara: slide bertahan sampai rekaman selesai (+ jeda sebentar), bukan mengikuti panjang kalimat.
+- Tampilan menyesuaikan layar: HP (foto di atas, kartu di bawah), tablet, dan PC/layar lebar (foto di kiri, kartu di kanan).
+  Ukuran huruf & foto otomatis disesuaikan agar selalu muat tanpa terpotong. Konfeti dipindah ke belakang kartu agar tulisan jelas.
+
+UCAPAN TEMAN HANYA SEKALI + TOMBOL WHATSAPP (build 2026.10.19)
+- Ucapan yang dikirim teman lewat kirim.html: tiap ucapan tampil SEKALI SAJA (slide dan teks berjalan), selama halaman dibuka.
+  Ucapan baru yang masuk saat halaman terbuka juga tampil sekali. Muat ulang halaman = putaran baru dari awal.
+- Ucapan yang diketik di admin (ucapan utama, ucapan penutup, teks berjalan) tetap berputar terus.
+- Tombol WhatsApp: admin > WA. Isi nomor (08xx atau 628xx), tulisan tombol, dan pesan awal ({nama} = nama yang berulang tahun).
+  Tombol "💬 Chat" ada di bar atas; kartu "Ingin kirim pesan? Chat ke nomor ini" ada di sampul dan di halaman kirim ucapan.
+  WAJIB deploy ulang Code.gs terbaru (versi 2026.10.19-wa) agar pengaturan WA tersimpan.
+  Alternatif tanpa deploy: isi  waNomor: "08xxxxxxxxxx"  di config.js.
